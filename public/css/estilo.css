@@ -1,0 +1,41 @@
+/* ========================================
+   TIPOGRAFÍAS
+   ======================================== */
+
+@font-face {
+    font-family: titulo;
+    src: url(../typography/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: texto;
+    src: url(../typography/Chivo-VariableFont_wght.ttf);
+}
+
+header{
+    font-family: titulo;
+}
+
+body{
+    font-family: texto;
+}
+
+
+/* ========================================
+   MEDIA MÓVIL
+   ======================================== */
+
+
+
+/* ========================================
+   COMPONENTES
+   ======================================== */
+
+   .carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+.carousel-indicators button {
+    background-color: #000;
+}
