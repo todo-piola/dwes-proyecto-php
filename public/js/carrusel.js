@@ -1,7 +1,7 @@
 
   const projectData = [
     {
-      title: "Ajedrez Interactivo",
+      title: "Ajedrez modular",
       description: "Juego de ajedrez con validación de movimientos de peones y lógica de turnos, desarrollado con JavaScript y manipulación del DOM."
     },
     {
