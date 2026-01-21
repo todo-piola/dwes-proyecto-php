@@ -20,7 +20,7 @@ Este proyecto tiene como principales objetivos educativos:
 #### Invitado (No autenticado)
 
 - Visualización del catálogo de productos
-- Acceso a páginas públicas (Home, Portfolio, Contacto)
+- Acceso a páginas públicas (Home, CV, Portfolio, Contacto)
 - Opción de registro y login
 
 #### Usuario Registrado
@@ -56,9 +56,11 @@ Este proyecto tiene como principales objetivos educativos:
   - HTML5
   - CSS3
   - Bootstrap
+  - JavaScript
 - **Base de Datos**: MySQL
-- **Librerías JavaScript**:
-  - Bootstrap Bundle
+- **Librerías**:
+  - Bootstrap icons
+  - Bootstrap JS Bundle
 
 ## Estructura del Proyecto
 
@@ -75,4 +77,5 @@ Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
 ## Agradecimientos
 
-Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tú apoyo y tu fortaleza interior.
+Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tu apoyo y tu fortaleza interior.
+[EOF]
