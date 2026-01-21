@@ -13,6 +13,6 @@
     </main>
 
     <?php include ("templates/footer.html") ?>
-
+    <script src="/dwes-proyecto-php/public/js/carrusel.js"></script>
 </body>
 </html>

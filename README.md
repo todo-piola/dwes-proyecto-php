@@ -41,11 +41,6 @@ Este proyecto tiene como principales objetivos educativos:
   - Editar productos existentes
   - Eliminar productos
   - Gestionar inventario
-- **CRUD de Usuarios**:
-  - Ver listado de usuarios
-  - Editar roles y permisos
-  - Eliminar usuarios
-- Visualizar estadísticas y reportes
 
 ### Carrito de Compras
 
@@ -53,7 +48,6 @@ Este proyecto tiene como principales objetivos educativos:
 - Modificar cantidades
 - Cálculo automático de totales
 - Persistencia de datos en sesión
-- Proceso de checkout
 
 ## Tecnologías Utilizadas
 
@@ -61,8 +55,7 @@ Este proyecto tiene como principales objetivos educativos:
 - **Frontend**:
   - HTML5
   - CSS3
-  - Bootstrap 5.3.8
-  - Bootstrap Icons
+  - Bootstrap
 - **Base de Datos**: MySQL
 - **Librerías JavaScript**:
   - Bootstrap Bundle
@@ -74,7 +67,7 @@ Este proyecto tiene como principales objetivos educativos:
 ### Franco Benavides García
 
 - GitHub: [@todo-piola](https://github.com/todo-piola)
-- LinkedIn: [Franco Benavides García](https://www.linkedin.com)
+- LinkedIn: [Franco Benavides García](https://www.linkedin.com/in/benavidesgarciafranco/)
 
 ## 📄 Licencia
 
@@ -82,4 +75,4 @@ Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
 ## 🙏 Agradecimientos
 
-Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tú apoyo y tu fortaleza interior.
+Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tu apoyo y tu fortaleza interior.
