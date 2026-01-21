@@ -1,6 +1,6 @@
 # Proyecto Web - Portfolio de Desarrollador PHP
 
-## 📋 Descripción
+## Descripción
 
 Proyecto web educativo desarrollado con PHP y Bootstrap que implementa un sistema completo de gestión de usuarios con diferentes roles y funcionalidades. El proyecto enfatiza la autenticación, autorización y gestión de permisos, junto con un sistema de carrito de compras.
 
@@ -62,17 +62,17 @@ Este proyecto tiene como principales objetivos educativos:
 
 ## Estructura del Proyecto
 
-## 👨‍💻 Autor
+## Autor
 
 ### Franco Benavides García
 
 - GitHub: [@todo-piola](https://github.com/todo-piola)
 - LinkedIn: [Franco Benavides García](https://www.linkedin.com/in/benavidesgarciafranco/)
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
-## 🙏 Agradecimientos
+## Agradecimientos
 
-Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tu apoyo y tu fortaleza interior.
+Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tú apoyo y tu fortaleza interior.
