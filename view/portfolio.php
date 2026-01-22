@@ -13,44 +13,55 @@
     <?php include ("../templates/header.html") ?>
 
     <main>
-    <div class="card-group">
-        <div class="card p-3">
-            <div class="overflow-hidden rounded" style="height: 250px;">
-                <a href="https://github.com/todo-piola/dwec/tree/main/react/ajedrez">
-                    <img src="/dwes-proyecto-php/public/img/proyecto1.webp" class="w-100 h-100 object-fit-cover" alt="ajedrez">
-                </a>
+    <div class="container-fluid">
+        <div class="row g-4 p-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="overflow-hidden rounded" style="height: 250px;">
+                        <a href="https://github.com/todo-piola/dwec/tree/main/react/ajedrez">
+                            <img src="/dwes-proyecto-php/public/img/proyecto1.webp" class="w-100 h-100 object-fit-cover" alt="ajedrez">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ajedrez Modular</h5>
+                        <p class="card-text">Juego de ajedrez con validación de movimientos de peones y lógica de turnos, desarrollado con JavaScript y manipulación del DOM.</p>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">Ajedrez Modular</h5>
-                <p class="card-text">Juego de ajedrez con validación de movimientos de peones y lógica de turnos, desarrollado con JavaScript y manipulación del DOM.</p>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="overflow-hidden rounded" style="height: 250px;">
+                        <a href="https://github.com/todo-piola/dwec/tree/main/react/gato-factos">
+                            <img src="/dwes-proyecto-php/public/img/proyecto4.webp" class="w-100 h-100 object-fit-cover" alt="gatos">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">API de Gatos curiosos</h5>
+                        <p class="card-text">Aplicación web que consulta una API sobre gatos y muestra datos curiosos, demostrando consumo de APIs REST y renderizado dinámico.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card p-3">
-            <div class="overflow-hidden rounded" style="height: 250px;">
-                <a href="https://github.com/todo-piola/dwec/tree/main/react/gato-factos">
-                    <img src="/dwes-proyecto-php/public/img/proyecto4.webp" class="w-100 h-100 object-fit-cover" alt="gatos">
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">API de Gatos curiosos</h5>
-                <p class="card-text">Aplicación web que consulta una API sobre gatos y muestra datos curiosos, demostrando consumo de APIs REST y renderizado dinámico.</p>
-            </div>
-        </div>
-        <div class="card p-3">
-            <div class="overflow-hidden rounded" style="height: 250px;">
-                <a href="https://github.com/todo-piola/dwec/tree/main/react/pokemon">
-                    <img src="/dwes-proyecto-php/public/img/proyecto3.webp" class="w-100 h-100 object-fit-cover" alt="pokedex">
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Pókedex interactiva</h5>
-                <p class="card-text">Aplicación web que consume la API de Pokémon para mostrar información dinámica mediante un carrusel, con filtros por rango y estadísticas en tiempo real.</p>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="overflow-hidden rounded" style="height: 250px;">
+                        <a href="https://github.com/todo-piola/dwec/tree/main/react/pokemon">
+                            <img src="/dwes-proyecto-php/public/img/proyecto3.webp" class="w-100 h-100 object-fit-cover" alt="pokedex">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Pókedex interactiva</h5>
+                        <p class="card-text">Aplicación web que consume la API de Pokémon para mostrar información dinámica mediante un carrusel, con filtros por rango y estadísticas en tiempo real.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</main>
+    </main>
 
     <?php include ("../templates/footer.html") ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
