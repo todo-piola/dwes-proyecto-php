@@ -12,7 +12,7 @@
     src: url(../typography/Chivo-VariableFont_wght.ttf);
 }
 
-header{
+header, footer{
     font-family: titulo;
 }
 
@@ -28,14 +28,18 @@ body{
 
 
 /* ========================================
-   COMPONENTES
+   TEMPLATES
    ======================================== */
 
-   .carousel-control-prev-icon,
-.carousel-control-next-icon {
+   
+.carousel-control-prev-icon, .carousel-control-next-icon {
     filter: invert(1);
 }
 
 .carousel-indicators button {
     background-color: #000;
+}
+
+.btn-send:hover {
+    opacity: 0.9;
 }
