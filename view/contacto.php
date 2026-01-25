@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/dwes-proyecto-php/public/css/estilo.css">
 </head>
 <body>
-    <?php include ("../templates/header.html") ?>
+    <?php include ("../templates/header.php") ?>
 
     <section class="min-vh-100 py-5">
         <div class="container py-5">

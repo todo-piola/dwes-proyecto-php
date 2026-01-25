@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 
 <header class="m-0 bg-black">
     <nav class="p-5 d-flex justify-content-between align-items-center">
@@ -11,6 +12,10 @@
             <a href="/dwes-proyecto-php/view/portfolio.php" class="text-decoration-none text-white">Portfolio</a>
             <a href="/dwes-proyecto-php/view/cursos.php" class="text-decoration-none text-white">Cursos</a>
             <a href="/dwes-proyecto-php/view/contacto.php" class="text-decoration-none text-white">Contacto</a>
+        <?php 
+        if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+            <a href="/dwes-proyecto-php/view/crud.php" class="text-decoration-none text-warning fw-bold">Admin Cursos</a>
+        <?php endif; ?>
         </div>
 
         <div class="dropdown d-md-none">
@@ -22,6 +27,9 @@
                 <li><a class="dropdown-item" href="/dwes-proyecto-php/view/portfolio.php">Portfolio</a></li>
                 <li><a class="dropdown-item" href="/dwes-proyecto-php/view/cursos.php">Cursos</a></li>
                 <li><a class="dropdown-item" href="/dwes-proyecto-php/view/contacto.php">Contacto</a></li>
+            <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+                <li><a class="dropdown-item" href="/dwes-proyecto-php/view/crud.php">Admin Cursos</a></li>
+            <?php endif; ?>
             </ul>
         </div>
         
