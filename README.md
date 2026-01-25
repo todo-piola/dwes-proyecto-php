@@ -1,72 +1,62 @@
-# Proyecto Web - Portfolio de Desarrollador PHP
+# Proyecto Desarrollo Web en Entorno Servidor - Portfolio de Desarrollador PHP
 
-## Descripción
+Este proyecto es una aplicación web desarrollada en PHP con base de datos MySQL. Incluye sistema de login, carrito de cursos y un panel básico de administración con CRUD para gestionar los cursos.
 
-Proyecto web educativo desarrollado con PHP y Bootstrap que implementa un sistema completo de gestión de usuarios con diferentes roles y funcionalidades. El proyecto enfatiza la autenticación, autorización y gestión de permisos, junto con un sistema de carrito de compras.
+Tecnologías necesarias para poder ejecutarlo:
 
-## Objetivos Didácticos
+- XAMPP
+- MySQL Workbench
 
-Este proyecto tiene como principales objetivos educativos:
 
-- **Sistema de Login y Autenticación**: Implementación de un sistema seguro de registro e inicio de sesión
-- **Gestión de Roles**: Tres tipos de usuarios con permisos diferenciados (Invitado, Usuario Registrado, Administrador)
-- **CRUD Completo**: Operaciones Create, Read, Update y Delete para administradores
-- **Carrito de Compras**: Sistema funcional de gestión de productos y carrito
+## Instalación
 
-## Características Principales
+### 1. Clonar el repositorio
 
-### Sistema de Usuarios
+Clona el proyecto con el siguiente comando desde la terminal:
 
-#### Invitado (No autenticado)
+    git clone https://github.com/todo-piola/dwes-proyecto-php
 
-- Visualización del catálogo de productos
-- Acceso a páginas públicas (Home, CV, Portfolio, Contacto)
-- Opción de registro y login
+Coloca la carpeta del proyecto dentro de htdocs si usas XAMPP:
 
-#### Usuario Registrado
+    C:\xampp\htdocs\dwes-proyecto-php
 
-- Todas las funcionalidades de invitado
-- Agregar productos al carrito
-- Gestionar su carrito de compras
-- Realizar compras
-- Visualizar historial de pedidos
-- Editar perfil personal
+### 2. Crea la base de datos
 
-#### Administrador
+Abre MySQL Workbench y ejecuta el script .sql que se aloja dentro de /config.
 
-- Todas las funcionalidades de usuario registrado
-- Panel de administración completo
-- **CRUD de Productos**:
-  - Crear nuevos productos
-  - Editar productos existentes
-  - Eliminar productos
-  - Gestionar inventario
+### 3. Ejecutar el proyecto
 
-### Carrito de Compras
+Asegúrate de que Apache y MySQL estén activos en XAMPP.
 
-- Agregar/eliminar productos
-- Modificar cantidades
-- Cálculo automático de totales
-- Persistencia de datos en sesión
+Después, abre el navegador y accede a:
 
-## Tecnologías Utilizadas
+<http://localhost/dwes-proyecto-php/index.php>
 
-- **Backend**: PHP
-- **Frontend**:
-  - HTML5
-  - CSS3
-  - Bootstrap
-  - JavaScript
-- **Base de Datos**: MySQL
-- **Librerías**:
-  - Bootstrap icons
-  - Bootstrap JS Bundle
+Puedes usar los siguientes usuarios para probar el sistema:
 
-## Estructura del Proyecto
+    Usuario: admin
+    Contraseña: admin123
 
-## Autor
+    Usuario: franco
+    Contraseña: franco123
 
-### Franco Benavides García
+El usuario admin tiene acceso al panel de administración para gestionar los cursos.
+
+Funcionalidades principales
+
+- Sistema de login con sesiones
+
+- Carrito de cursos que se guarda por usuario
+
+- Panel CRUD para crear, leer, modificar y borrar cursos (solo admin)
+
+- Navegación responsive con Bootstrap
+
+- Conexión a base de datos usando PDO
+
+## Autoría
+
+Franco Benavides García
 
 - GitHub: [@todo-piola](https://github.com/todo-piola)
 - LinkedIn: [Franco Benavides García](https://www.linkedin.com/in/benavidesgarciafranco/)
@@ -77,5 +67,4 @@ Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
 ## Agradecimientos
 
-Proyecto desarrollado como práctica educativa para el módulo Desarrollo Web en Entorno Servidor de 2DAW en el IES Infanta Elena, Galapagar. Gracias Sarah por tu apoyo y tu fortaleza interior.
-[EOF]
+Proyecto desarrollado como práctica educativa para el módulo DWES en el IES Infanta Elena, Galapagar. Gracias Sarah por tu apoyo y tu fortaleza interior.
