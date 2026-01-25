@@ -1,3 +1,7 @@
+<?php session_start();
+require_once '../model/conexion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +43,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted fs-5"><i class="bi bi-currency-euro me-1"></i> 25</span>
-                                <a href="#" class="btn btn-outline-warning ">Agregar al carrito</a>
+                                <a href="/dwes-proyecto-php/controller/agregar_carrito.php?id_curso=1" class="btn btn-outline-warning ">Agregar al carrito</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +62,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted fs-5"><i class="bi bi-currency-euro me-1"></i> 40</span>
-                                <a href="#" class="btn btn-outline-warning ">Agregar al carrito</a>
+                                <a href="/dwes-proyecto-php/controller/agregar_carrito.php?id_curso=2" class="btn btn-outline-warning ">Agregar al carrito</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +81,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted fs-5"><i class="bi bi-currency-euro me-1"></i> 40</span>
-                                <a href="#" class="btn btn-outline-warning ">Agregar al carrito</a>
+                                <a href="/dwes-proyecto-php/controller/agregar_carrito.php?id_curso=3" class="btn btn-outline-warning ">Agregar al carrito</a>
                             </div>
                         </div>
                     </div>
