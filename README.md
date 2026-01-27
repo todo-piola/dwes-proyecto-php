@@ -5,24 +5,38 @@ Este proyecto es una aplicación web desarrollada en PHP con base de datos MySQL
 Tecnologías necesarias para poder ejecutarlo:
 
 - XAMPP
-- MySQL Workbench
-
 
 ## Instalación
 
 ### 1. Clonar el repositorio
 
-Clona el proyecto con el siguiente comando desde la terminal:
+Abre el IDE de tu elección que soporte control de versiones Git y en la terminal desplázate a:
+
+        C:\xampp\htdocs
+
+Desde ahí, clona el proyecto con el siguiente comando desde la terminal:
 
     git clone https://github.com/todo-piola/dwes-proyecto-php
 
-Coloca la carpeta del proyecto dentro de htdocs si usas XAMPP:
-
-    C:\xampp\htdocs\dwes-proyecto-php
-
 ### 2. Crea la base de datos
 
-Abre MySQL Workbench y ejecuta el script .sql que se aloja dentro de /config.
+Asegúrate de que Apache y MySQL estén activos en XAMPP.
+
+Si usas XAMPP desde Windows, abre PHPMyAdmin desde la interfaz gráfica de XAMPP.
+
+Si usas XAMPP desde Linux, accede a PHPMyAdmin... primero entrando en el servidor local, buscando localhost en cualquier navegador (Firefox, Chrome...) y clicando en PHPMyAdmin.
+
+Una vez dentro, pulsa en _Importar_ y busca el script sql que contiene la bbdd y sus datos iniciales con los que se hacen las pruebas.
+
+Windows:
+
+        C:\xampp\htdocs\dwes-proyecto-php\config\db_proyecto_Franco.sql
+
+Linux:
+
+        C:/opt/lampp/htdocs/dwes-proyecto-php\config\db_proyecto_Franco.sql
+
+Siguiendo estos pasos, ¡ya tienes la bbdd lista para usar!
 
 ### 3. Ejecutar el proyecto
 
@@ -67,4 +81,5 @@ Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
 ## Agradecimientos
 
-Proyecto desarrollado como práctica educativa para el módulo DWES en el IES Infanta Elena, Galapagar. Gracias Sarah por tu apoyo y tu fortaleza interior.
+Proyecto desarrollado como práctica educativa para el módulo DWES en el IES Infanta Elena, Galapagar. 
+Gracias Sarah por tu apoyo y tu fortaleza interior.
