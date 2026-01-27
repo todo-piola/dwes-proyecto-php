@@ -24,7 +24,7 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="text-center mb-5">
             <h1 class="display-4 fw-bold mb-2">Cursos Web Developer</h1>
-            <p class="lead text-muted">Explora nuestros cursos disponibles y empieza a aprender hoy.</p>
+            <p class="lead text-muted">Explora los cursos disponibles y empieza a aprender hoy.</p>
         </div>
 
         <!-- Tarjetas dinámicas -->
