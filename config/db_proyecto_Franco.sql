@@ -2,22 +2,22 @@ CREATE DATABASE IF NOT EXISTS webdev_franco;
 
 USE webdev_franco;
 
-CREATE TABLE usuario (
+CREATE TABLE IF NOT EXISTS usuario (
     nombre_usuario VARCHAR(20) PRIMARY KEY,
     email VARCHAR(100),
     passwd VARCHAR(20),
-	fecha_registro DATE
+	rol ENUM('usuario', 'admin') DEFAULT 'usuario'
 );
 
-CREATE TABLE curso (
+CREATE TABLE IF NOT EXISTS curso (
     id_curso INT PRIMARY KEY AUTO_INCREMENT,
-	nombre_curso VARCHAR(100),
+	nombre_curso VARCHAR(100) UNIQUE,
     descripción VARCHAR(500),
-    precio INT4
+    precio DECIMAL(10,2)
 );
 
 
-CREATE TABLE pedido (
+CREATE TABLE IF NOT EXISTS pedido (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     nombre_usuario VARCHAR(20) NOT NULL,
     fecha_pedido TIMESTAMP,
@@ -25,7 +25,7 @@ CREATE TABLE pedido (
     FOREIGN KEY (nombre_usuario) REFERENCES usuario(nombre_usuario)
 );
 
-CREATE TABLE pedido_cursos (
+CREATE TABLE IF NOT EXISTS pedido_cursos (
 	id_pedido INT NOT NULL,
     id_curso INT NOT NULL,
     precio_pagado DECIMAL(10,2) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE pedido_cursos (
 );
 
 
-CREATE TABLE carrito (
+CREATE TABLE IF NOT EXISTS carrito (
     id_carrito INT PRIMARY KEY AUTO_INCREMENT,
     nombre_usuario VARCHAR(20) UNIQUE NOT NULL,
     fecha_creación TIMESTAMP,
@@ -43,10 +43,19 @@ CREATE TABLE carrito (
     FOREIGN KEY (nombre_usuario) REFERENCES usuario(nombre_usuario)
 );
 
-CREATE TABLE carrito_cursos (
+CREATE TABLE IF NOT EXISTS carrito_cursos (
 	id_carrito INT NOT NULL,
     id_curso INT NOT NULL,
     PRIMARY KEY (id_carrito, id_curso),
 	FOREIGN KEY (id_carrito) REFERENCES carrito(id_carrito),
     FOREIGN KEY (id_curso) REFERENCES curso(id_curso)
 );
+
+-- Insertar Usuarios
+INSERT IGNORE INTO usuario (nombre_usuario, passwd, rol) VALUES 
+('admin', 'admin123', 'admin'),
+('franco', 'franco123', 'usuario');
+
+INSERT IGNORE INTO curso (nombre_curso, descripción, precio) VALUES 
+('HTML-CSS', 'Aprende los fundamentos del desarrollo web. Domina HTML5 y CSS3 desde cero, creando páginas web profesionales y responsivas.', 40),
+('Bootstrap', 'Mejora tus habilidades en la web con el framework favorito de los desarrolladores.', 25);
