@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-
+<?php include ("view/cookies.php") ?>
 <header class="m-0 bg-black">
     <nav class="p-5 d-flex justify-content-between align-items-center">
         <div class="nav-name w-50">

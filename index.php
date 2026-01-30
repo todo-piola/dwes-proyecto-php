@@ -11,7 +11,6 @@
 <body>
     <?php include ("templates/header.php") ?>
     <?php include ("templates/carrusel.html") ?>
-
     <?php include ("templates/footer.html") ?>
 </body>
 </html>
