@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../model/conexion.php';
+require_once '../model/control_sesion.php';
 
 if (!isset($_SESSION['usuario'])) {
     header("Location: /dwes-proyecto-php/view/login.php");

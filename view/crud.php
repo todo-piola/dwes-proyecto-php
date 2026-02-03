@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../model/conexion.php';
+require_once '../model/control_sesion.php';
 
 // Solo admins
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
@@ -71,7 +72,7 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>Precio</th>
+                    <th>Precio(€)</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

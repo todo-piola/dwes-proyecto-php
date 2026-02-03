@@ -2,6 +2,7 @@
 
 session_start();
 require_once '../model/conexion.php';
+require_once '../model/control_sesion.php';
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     header("Location: /dwes-proyecto-php/index.php");
@@ -59,9 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-6">
 
-            <h3 class="mb-4">
-                <i class="bi bi-pencil"></i>
-            Editar curso </h3>
+            <h3 class="mb-4"> Editar curso </h3>
 
             <form method="post" class="border rounded p-4 bg-white">
                 <div class="mb-3">
@@ -80,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             required><?= htmlspecialchars($curso['descripción']) ?></textarea>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label">Precio</label>
+                    <label class="form-label">Precio (€)</label>
                     <input type="number"
                         name="precio"
                         class="form-control"
@@ -89,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="d-flex gap-2">
                     <button class="btn btn-warning"> Guardar cambios </button>
-                    <a href="crud_cursos.php" class="btn btn-outline-secondary"> Cancelar </a>
+                    <a href="crud.php" class="btn btn-outline-secondary"> Cancelar </a>
                 </div>
             </form>
 

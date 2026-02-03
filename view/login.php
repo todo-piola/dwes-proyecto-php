@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../model/conexion.php';
+require_once '../model/control_sesion.php';
 
 $mensaje_error = '';
 $ya_logueado = isset($_SESSION['usuario']);
@@ -25,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($fila && $fila['passwd'] === $password) {
             $_SESSION['usuario'] = $fila['nombre_usuario'];
             $_SESSION['rol'] = $fila['rol'];
+            $_SESSION['ultima_actividad'] = time();
 
             // Redirigir a la página anterior guardada
             $redirect = $_SESSION['login_redirect'];
@@ -64,9 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php else: ?>
             <h4 class="mb-3 text-center">Iniciar Sesión</h4>
 
+            <!-- Si el intento de inicio de sesión es erróneo, muestra el mensaje de error -->
             <?php if ($mensaje_error): ?>
                 <div class="alert alert-danger"><?= $mensaje_error ?></div>
             <?php endif; ?>
+
+            <!-- Si la variable timeout está iniciada, entonces muestra el cartel de sesión caducada -->
+            <?php if (isset($_GET['timeout'])): ?>
+                <div class="alert alert-warning"> Tu sesión ha caducado por inactividad. </div>
+            <?php endif; ?>
+
 
             <form method="post" action="">
                 <div class="mb-3">
