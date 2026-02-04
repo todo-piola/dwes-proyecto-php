@@ -2,11 +2,19 @@
 session_start();
 require_once '../model/conexion.php';
 require_once '../model/control_sesion.php';
+require_once '../model/funciones_test.php';
 
+if (!usuarioAutenticado()) {
+    header("Location: /dwes-proyecto-php/view/login.php");
+    exit();
+}
+/* 
 if (!isset($_SESSION['usuario'])) {
     header("Location: /dwes-proyecto-php/view/login.php");
     exit();
 }
+Pruebas para los test PHPUnit
+*/
 
 $usuario = $_SESSION['usuario'];
 
