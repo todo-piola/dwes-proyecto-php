@@ -8,7 +8,7 @@ if (isset($_SESSION['ultima_actividad'])) {
         // Sesión caducada
         session_unset();
         session_destroy();
-        // Manda de vuelta a la vista login y envía la variable timeout iniciada a 1 para mostrar un cartel informativo
+        // Retorna la vista login y envía la variable timeout iniciada a 1 para mostrar un cartel informativo
         header("Location: /dwes-proyecto-php/view/login.php?timeout=1");
         exit();
     }
