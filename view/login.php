@@ -1,45 +1,68 @@
 <?php
 session_start();
 require_once '../model/conexion.php';
-require_once '../model/control_sesion.php';
+// require_once '../model/control_sesion.php';
 
 $mensaje_error = '';
-$ya_logueado = isset($_SESSION['usuario']);
+$usuario_no_existe = false;
+$usuario_input = '';
 
-// Guardar página anterior solo la primera vez
-if (!isset($_SESSION['login_redirect'])) {
-    $_SESSION['login_redirect'] = $_SERVER['HTTP_REFERER'] ?? '/dwes-proyecto-php/index.php';
+// ===== DEBUGGING: Ver qué llega en POST =====
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    error_log("POST recibido: " . print_r($_POST, true));
 }
 
-// Procesar formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = trim($_POST['username']);
+// ===== PROCESAR LOGIN =====
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['password'])) {
+    $usuario_input = trim($_POST['username']);
     $password = trim($_POST['password']);
+    
+    error_log("Procesando login para usuario: $usuario_input");
 
-    if (!empty($usuario) && !empty($password)) {
-        // Buscar usuario por nombre_usuario
-        $sql = "SELECT nombre_usuario, passwd, rol FROM usuario WHERE nombre_usuario = ?";
-        $stmt = $bd->prepare($sql);
-        $stmt->execute([$usuario]);
-        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!empty($usuario_input) && !empty($password)) {
+        try {
+            $sql = "SELECT nombre_usuario, passwd, rol FROM usuario WHERE nombre_usuario = ?";
+            $stmt = $bd->prepare($sql);
+            $stmt->execute([$usuario_input]);
+            $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            error_log("Resultado búsqueda: " . ($fila ? "Usuario encontrado" : "Usuario NO encontrado"));
 
-        if ($fila && $fila['passwd'] === $password) {
-            $_SESSION['usuario'] = $fila['nombre_usuario'];
-            $_SESSION['rol'] = $fila['rol'];
-            $_SESSION['ultima_actividad'] = time();
+            if ($fila) {
+                // El usuario existe - verificar contraseña
+                if ($fila['passwd'] === $password) {
+                    $_SESSION['usuario'] = $fila['nombre_usuario'];
+                    $_SESSION['rol'] = $fila['rol'];
+                    $_SESSION['ultima_actividad'] = time();
 
-            // Redirigir a la página anterior guardada
-            $redirect = $_SESSION['login_redirect'];
-            unset($_SESSION['login_redirect']); // limpiar variable
-            header("Location: $redirect");
-            exit();
-        } else {
-            $mensaje_error = "Usuario o contraseña incorrectos";
+                    $redirect = $_SESSION['login_redirect'] ?? '/dwes-proyecto-php/index.php';
+                    unset($_SESSION['login_redirect']);
+                    
+                    error_log("Login exitoso, redirigiendo a: $redirect");
+                    header("Location: $redirect");
+                    exit();
+                } else {
+                    $mensaje_error = "La contraseña no es correcta";
+                    error_log("Contraseña incorrecta");
+                }
+            } else {
+                // El usuario NO existe
+                $mensaje_error = "El usuario no existe";
+                $usuario_no_existe = true;
+                error_log("Usuario no existe, mostrando botón de registro");
+            }
+        } catch (Exception $e) {
+            $mensaje_error = "Error en la base de datos";
+            error_log("Error BD: " . $e->getMessage());
         }
     } else {
         $mensaje_error = "Rellena ambos campos";
+        error_log("Campos vacíos");
     }
 }
+
+// Verificar si ya está logueado
+$ya_logueado = isset($_SESSION['usuario']);
 ?>
 
 <!DOCTYPE html>
@@ -48,39 +71,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/dwes-proyecto-php/public/css/estilo.css">
 </head>
 <body class="bg-dark text-white">
+
+<?php include '../templates/header.php' ?>
 
 <div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="card p-4 shadow" style="width: 400px;">
 
         <?php if ($ya_logueado): ?>
-            <h4 class="mb-3">Ya estás conectado como <?= $_SESSION['usuario'] ?></h4>
+            <h4 class="mb-3">Ya estás conectado como <?= htmlspecialchars($_SESSION['usuario']) ?></h4>
             <div class="d-grid gap-2">
-                <!-- Botón cerrar sesión -->
                 <a href="../model/logout.php" class="btn btn-warning w-100">Cerrar sesión</a>
-                <!-- Botón ir a la página principal -->
                 <a href="/dwes-proyecto-php/index.php" class="btn btn-secondary w-100">Ir a Inicio</a>
             </div>
+            
         <?php else: ?>
             <h4 class="mb-3 text-center">Iniciar Sesión</h4>
 
-            <!-- Si el intento de inicio de sesión es erróneo, muestra el mensaje de error -->
+            <!-- Muestra mensaje de error personalizado -->
             <?php if ($mensaje_error): ?>
-                <div class="alert alert-danger"><?= $mensaje_error ?></div>
+                <div class="alert alert-danger"><?= htmlspecialchars($mensaje_error) ?></div>
             <?php endif; ?>
 
-            <!-- Si la variable timeout está iniciada, entonces muestra el cartel de sesión caducada -->
+            <!-- Si el usuario introducido no existe, aparece un botón que redirige a registro.php -->
+            <?php if ($usuario_no_existe): ?>
+                <div class="alert alert-success">
+                    <strong>¡El usuario no existe!</strong><br>
+                    ¿No tienes cuenta?
+                    <a href="registro.php?usuario=<?= urlencode($usuario_input) ?>" class="btn btn-sm btn-primary ms-2">
+                        Registrarse
+                    </a>
+                </div>
+            <?php endif; ?>
+
+            <!-- Si el usuario estaba logeado pero sin actividad, elimina la sesión después de 3 minutos -->
             <?php if (isset($_GET['timeout'])): ?>
-                <div class="alert alert-warning"> Tu sesión ha caducado por inactividad. </div>
+                <div class="alert alert-warning">Tu sesión ha caducado por inactividad.</div>
             <?php endif; ?>
 
+            <?php if (isset($_GET['registro']) && $_GET['registro'] === 'ok'): ?>
+                <div class="alert alert-success">
+                    Usuario registrado correctamente. Ya puedes iniciar sesión.
+                </div>
+            <?php endif; ?>
 
-            <form method="post" action="">
+            <form method="post" action="login.php">
                 <div class="mb-3">
                     <label for="username" class="form-label">Usuario</label>
-                    <input type="text" name="username" id="username" class="form-control" required>
+                    <input type="text" name="username" id="username" class="form-control" 
+                           value="<?= htmlspecialchars($usuario_input) ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
@@ -93,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
+<?php include '../templates/footer.html'; ?>
+
 </body>
 </html>
-

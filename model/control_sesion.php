@@ -1,18 +1,21 @@
 <?php
-session_start();
 
-$tiempo_maximo = 60; // 1 minuto inactivo
+$tiempo_maximo = 180; // 3 minutos
 
-if (isset($_SESSION['ultima_actividad'])) {
-    if (time() - $_SESSION['ultima_actividad'] > $tiempo_maximo) {
-        // Sesión caducada
-        session_unset();
-        session_destroy();
-        // Retorna la vista login y envía la variable timeout iniciada a 1 para mostrar un cartel informativo
-        header("Location: /dwes-proyecto-php/view/login.php?timeout=1");
-        exit();
+// SOLO si hay usuario logeado
+if (isset($_SESSION['usuario'])) {
+
+    if (isset($_SESSION['ultima_actividad'])) {
+        if (time() - $_SESSION['ultima_actividad'] > $tiempo_maximo) {
+
+            session_unset();
+            session_destroy();
+
+            header("Location: /dwes-proyecto-php/view/login.php?timeout=1");
+            exit();
+        }
     }
-}
 
-// Actualizar última actividad
-$_SESSION['ultima_actividad'] = time();
+    // Actualizar actividad
+    $_SESSION['ultima_actividad'] = time();
+}
