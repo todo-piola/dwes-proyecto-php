@@ -58,4 +58,11 @@ INSERT IGNORE INTO usuario (nombre_usuario, passwd, rol) VALUES
 
 INSERT IGNORE INTO curso (nombre_curso, descripción, precio) VALUES 
 ('HTML-CSS', 'Aprende los fundamentos del desarrollo web. Domina HTML5 y CSS3 desde cero, creando páginas web profesionales y responsivas.', 40),
-('Bootstrap', 'Mejora tus habilidades en la web con el framework favorito de los desarrolladores.', 25);
+('Bootstrap', 'Mejora tus habilidades en la web con el framework favorito de los desarrolladores.', 25),
+('JavaScript Moderno', 'Domina JavaScript ES6+ desde cero. Aprende programación asíncrona, manipulación del DOM y las mejores prácticas del desarrollo moderno.', 50),
+('React Completo', 'Conviértete en experto en React. Hooks, Context API, Redux y desarrollo de aplicaciones web escalables y profesionales.', 65),
+('Node.js & Express', 'Desarrollo backend con Node.js. Crea APIs REST, maneja bases de datos y aprende arquitectura de servidores modernos.', 55),
+('PHP & MySQL', 'Desarrollo web dinámico con PHP y MySQL. Desde lo básico hasta aplicaciones complejas con gestión de bases de datos.', 45),
+('Python para Desarrollo Web', 'Aprende Python y Django para crear aplicaciones web robustas. Ideal para principiantes y desarrolladores que quieren expandir su stack.', 60),
+('Git & GitHub Profesional', 'Domina el control de versiones. Aprende Git, GitHub, flujos de trabajo colaborativos y buenas prácticas en equipos de desarrollo.', 30),
+('Vue.js 3 Avanzado', 'Frameworks JavaScript moderno. Composition API, Vuex, Vue Router y desarrollo de SPAs profesionales con Vue 3.', 58);
