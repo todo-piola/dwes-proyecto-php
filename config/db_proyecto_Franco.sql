@@ -51,6 +51,12 @@ CREATE TABLE IF NOT EXISTS carrito_cursos (
     FOREIGN KEY (id_curso) REFERENCES curso(id_curso)
 );
 
+CREATE TABLE IF NOT EXISTS contacto (
+    email VARCHAR(100) PRIMARY KEY,
+    nombre VARCHAR(100),
+    mensaje VARCHAR(1000)
+);
+
 -- Insertar Usuarios
 INSERT IGNORE INTO usuario (nombre_usuario, passwd, rol) VALUES 
 ('admin', 'admin123', 'admin'),
