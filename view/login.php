@@ -1,13 +1,12 @@
 <?php
 session_start();
 require_once '../model/conexion.php';
-// require_once '../model/control_sesion.php';
 
 $mensaje_error = '';
 $usuario_no_existe = false;
 $usuario_input = '';
 
-// ===== DEBUGGING: Ver qué llega en POST =====
+// ===== DEBUGGING =====
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     error_log("POST recibido: " . print_r($_POST, true));
 }
@@ -16,28 +15,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['password'])) {
     $usuario_input = trim($_POST['username']);
     $password = trim($_POST['password']);
-    
+
     error_log("Procesando login para usuario: $usuario_input");
 
     if (!empty($usuario_input) && !empty($password)) {
         try {
-            $sql = "SELECT nombre_usuario, passwd, rol FROM usuario WHERE nombre_usuario = ?";
+            // 🔹 Usar nombre_usuario correctamente
+            $sql = "SELECT nombre_usuario, passwd, rol, contador_login FROM usuario WHERE nombre_usuario = ?";
             $stmt = $bd->prepare($sql);
             $stmt->execute([$usuario_input]);
             $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             error_log("Resultado búsqueda: " . ($fila ? "Usuario encontrado" : "Usuario NO encontrado"));
 
             if ($fila) {
                 // El usuario existe - verificar contraseña
                 if ($fila['passwd'] === $password) {
+
+                    // Crear sesión
                     $_SESSION['usuario'] = $fila['nombre_usuario'];
                     $_SESSION['rol'] = $fila['rol'];
                     $_SESSION['ultima_actividad'] = time();
 
+                    // Incrementar contador de logins
+                    $stmt = $bd->prepare("UPDATE usuario SET contador_login = contador_login + 1 WHERE nombre_usuario = ?");
+                    $stmt->execute([$fila['nombre_usuario']]);
+
                     $redirect = $_SESSION['login_redirect'] ?? '/dwes-proyecto-php/index.php';
                     unset($_SESSION['login_redirect']);
-                    
+
                     error_log("Login exitoso, redirigiendo a: $redirect");
                     header("Location: $redirect");
                     exit();
@@ -46,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
                     error_log("Contraseña incorrecta");
                 }
             } else {
-                // El usuario NO existe
                 $mensaje_error = "El usuario no existe";
                 $usuario_no_existe = true;
                 error_log("Usuario no existe, mostrando botón de registro");
