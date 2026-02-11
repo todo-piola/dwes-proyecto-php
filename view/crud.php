@@ -22,10 +22,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear'])) {
 
 // Procesar eliminación
 if (isset($_GET['eliminar'])) {
-    $id_curso = $_GET['eliminar'];
-    $sql = "DELETE FROM curso WHERE id_curso = ?";
-    $stmt = $bd->prepare($sql);
-    $stmt->execute([$id_curso]);
+    try{
+        $id_curso = $_GET['eliminar'];
+        $sql = "DELETE FROM curso WHERE id_curso = ?";
+        $stmt = $bd->prepare($sql);
+        $stmt->execute([$id_curso]);
+        echo '<div class="alert alert-success">
+            Curso eliminado correctamente.
+          </div>';
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) { // Código 23000 indica violación de FK con otra tabla
+                echo '<div class="alert alert-warning">
+                    No puedes borrar este curso porque está en el carrito de algún usuario.
+                </div>';
+        } else {
+            echo '<div class="alert alert-danger">
+                Ha ocurrido un error inesperado.
+                </div>';
+        }
+    }
 }
 
 // Obtener cursos

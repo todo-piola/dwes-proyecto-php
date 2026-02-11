@@ -18,9 +18,17 @@ $carrito = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($carrito) {
     $id_carrito = $carrito['id_carrito'];
     // Eliminar curso del carrito
-    $stmt = $bd->prepare("DELETE FROM carrito_cursos WHERE id_carrito = ? AND id_curso = ?");
-    $stmt->execute([$id_carrito, $id_curso]);
-}
+    try{
+        $stmt = $bd->prepare("DELETE FROM carrito_cursos WHERE id_carrito = ? AND id_curso = ?");
+        $stmt->execute([$id_carrito, $id_curso]);
+        echo "Curso eliminado correctamente.";
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) { // Código 23000 indica violación de FK con otra tabla
+            echo "No se puede eliminar este curso porque está en el carrito de uno o más usuarios.";
+        } else {
+            echo "Error al eliminar el curso. Inténtalo más tarde.";
+        }
+    }
 
 // Redirigir de nuevo al carrito
 header("Location: /dwes-proyecto-php/view/carrito.php");
