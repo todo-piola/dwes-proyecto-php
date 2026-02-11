@@ -1,4 +1,29 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once '../model/conexion.php';
+
+$mensaje_exito = '';
+$mensaje_error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = trim($_POST['nombre'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $mensaje = trim($_POST['mensaje'] ?? '');
+
+    if (!empty($nombre) && !empty($email) && !empty($mensaje)) {
+        try {
+            $stmt = $bd->prepare("INSERT INTO contacto (nombre, email, mensaje) VALUES (?, ?, ?)");
+            $stmt->execute([$nombre, $email, $mensaje]);
+            $mensaje_exito = "Mensaje enviado correctamente.";
+        } catch (Exception $e) {
+            $mensaje_error = "Error al enviar el mensaje.";
+        }
+    } else {
+        $mensaje_error = "Todos los campos son obligatorios.";
+    }
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,18 +48,27 @@
                     <p class="text-secondary mb-5">
                         Rellena el formulario y me pondré en contacto lo antes posible
                     </p>
-                    
-                    <form>
+
+                    <?php if ($mensaje_exito): ?>
+                        <div class="alert alert-success"><?= $mensaje_exito ?></div>
+                    <?php endif; ?>
+
+                    <?php if ($mensaje_error): ?>
+                        <div class="alert alert-danger"><?= $mensaje_error ?></div>
+                    <?php endif; ?>
+
+
+                    <form method="POST" action="">
                         <div class="mb-4">
-                            <input type="text" class="form-control bg-transparent text-black border-0 border-bottom border-secondary rounded-0 px-0" placeholder="Nombre">
+                            <input type="text" name="nombre" class="form-control bg-transparent text-black border-0 border-bottom border-secondary rounded-0 px-0" placeholder="Nombre" required>
                         </div>
                         
                         <div class="mb-4">
-                            <input type="email" class="form-control bg-transparent text-white border-0 border-bottom border-secondary rounded-0 px-0" placeholder="Email">
+                            <input type="email" name="email" class="form-control bg-transparent text-black border-0 border-bottom border-secondary rounded-0 px-0" placeholder="Email" required>
                         </div>
                         
                         <div class="mb-4">
-                            <textarea class="form-control bg-transparent text-white border-0 border-bottom border-secondary rounded-0 px-0" rows="3" placeholder="Mensaje"></textarea>
+                            <textarea name="mensaje" class="form-control bg-transparent text-black border-0 border-bottom border-secondary rounded-0 px-0" rows="3" placeholder="Mensaje" required></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-secondary btn-sm w-50 mt-3 btn-send">Enviar</button>
