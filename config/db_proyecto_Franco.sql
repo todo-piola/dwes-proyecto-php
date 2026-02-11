@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS usuario (
     nombre_usuario VARCHAR(20) PRIMARY KEY,
     email VARCHAR(100),
     passwd VARCHAR(20),
-	rol ENUM('usuario', 'admin') DEFAULT 'usuario'
+	rol ENUM('usuario', 'admin') DEFAULT 'usuario',
+    contador_login INT DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS curso (
