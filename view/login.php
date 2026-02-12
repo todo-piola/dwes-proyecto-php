@@ -1,17 +1,12 @@
 <?php
-session_start();
+require_once '../config/session.php';
 require_once '../model/conexion.php';
 
 $mensaje_error = '';
 $usuario_no_existe = false;
 $usuario_input = '';
 
-// ===== DEBUGGING =====
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    error_log("POST recibido: " . print_r($_POST, true));
-}
-
-// ===== PROCESAR LOGIN =====
+// Proceso el login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['password'])) {
     $usuario_input = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -30,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
 
             if ($fila) {
                 // El usuario existe - verificar contraseña
-                if ($fila['passwd'] === $password) {
-
+                if ($fila['passwd'] === $password) { 
+                    session_regenerate_id(true); //Cuando el login es correcto regenera la sesión
+                    require_once '../config/session.php';
                     // Crear sesión
                     $_SESSION['usuario'] = $fila['nombre_usuario'];
                     $_SESSION['rol'] = $fila['rol'];

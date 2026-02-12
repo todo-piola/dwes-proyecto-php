@@ -29,6 +29,7 @@ if ($carrito) {
             echo "Error al eliminar el curso. Inténtalo más tarde.";
         }
     }
+}
 
 // Redirigir de nuevo al carrito
 header("Location: /dwes-proyecto-php/view/carrito.php");

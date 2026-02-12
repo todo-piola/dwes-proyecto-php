@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../config/session.php';
 require_once '../model/conexion.php';
 require_once '../model/control_sesion.php';
 
