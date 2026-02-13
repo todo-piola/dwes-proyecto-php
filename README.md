@@ -81,5 +81,4 @@ Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
 ## Agradecimientos
 
-Proyecto desarrollado como práctica educativa para el módulo DWES en el IES Infanta Elena, Galapagar. 
-Gracias Sarah por tu apoyo y tu fortaleza interior.
+Proyecto desarrollado como práctica educativa para el módulo DWES en el IES Infanta Elena, Galapagar.Gracias Sarah por tu apoyo y tu fortaleza interior.
